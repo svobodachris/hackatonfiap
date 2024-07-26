@@ -3,6 +3,8 @@ const cors = require('cors');
 const morgan = require('morgan');
 const helmet = require('helmet');
 const mongoose = require('mongoose');
+const swaggerUi = require('swagger-ui-express');
+const swaggerSpec = require('./config/swaggerConfig');
 
 const authRoutes = require('./routes/authRoutes');
 const doctorRoutes = require('./routes/doctorRoutes');
@@ -34,6 +36,9 @@ app.use('/api/auth', authRoutes);
 app.use('/api/doctors', doctorRoutes);
 app.use('/api/patients', patientRoutes);
 app.use('/api/appointments', appointmentRoutes);
+
+// Configurar Swagger
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 // Middleware para tratar erros
 app.use((err, req, res, next) => {

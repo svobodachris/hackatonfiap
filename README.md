@@ -44,23 +44,32 @@ Para instalar as dependências do projeto, execute:
 npm install
 
 Caso posteriormente ocorra erro, utilize:
-npm install cors
-npm install express
-npm install morgan
-npm install mongoose
-npm install helmet
-npm install swagger-jsdoc swagger-ui-express
 
-Iniciar o Servidor
+`npm install cors`
+
+`npm install express`
+
+`npm install morgan`
+
+`npm install mongoose`
+
+`npm install helmet`
+
+`npm install swagger-jsdoc swagger-ui-express`
+
+### Iniciar o Servidor
+
 Para iniciar o servidor em modo de desenvolvimento, execute:
-npm run dev
+`npm run dev`
 
 Para iniciar o servidor em modo de produção, execute:
-npm start
+`npm start`
 
-Executar Testes
+### Executar Testes
+
 Para executar os testes, execute:
-npm test
+`npm test`
 
->>>> Testar a documentação:
-http://localhost:3000/api-docs
+### Testar a documentação:
+
+`http://localhost:3000/api-docs`

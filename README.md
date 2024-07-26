@@ -49,6 +49,7 @@ npm install express
 npm install morgan
 npm install mongoose
 npm install helmet
+npm install swagger-jsdoc swagger-ui-express
 
 Iniciar o Servidor
 Para iniciar o servidor em modo de desenvolvimento, execute:
@@ -61,3 +62,5 @@ Executar Testes
 Para executar os testes, execute:
 npm test
 
+>>>> Testar a documentação:
+http://localhost:3000/api-docs

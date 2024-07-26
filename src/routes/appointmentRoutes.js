@@ -6,110 +6,109 @@ const authMiddleware = require('../middlewares/authMiddleware');
 /**
  * @swagger
  * tags:
- *   name: Agendamentos
- *   description: API para gerenciar consultas médicas
+ *   name: Appointments
+ *   description: Gerenciamento de consultas
  */
 
 /**
  * @swagger
- * components:
- *   schemas:
- *     ScheduleAppointment:
- *       type: object
- *       required:
- *         - doctorId
- *         - patientId
- *         - date
- *       properties:
- *         doctorId:
- *           type: string
- *           description: ID do médico
- *         patientId:
- *           type: string
- *           description: ID do paciente
- *         date:
- *           type: string
- *           format: date-time
- *           description: Data e hora da consulta
- *       example:
- *         doctorId: 60d21ba67c213e6a96198f8b
- *         patientId: 60d21bb67c213e6a96198f8d
- *         date: 2024-08-15T14:30:00Z
+ * /appointments/schedule:
+ *   post:
+ *     summary: Agendar uma nova consulta
+ *     tags: [Appointments]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               doctorId:
+ *                 type: string
+ *                 description: ID do médico
+ *               patientId:
+ *                 type: string
+ *                 description: ID do paciente
+ *               date:
+ *                 type: string
+ *                 format: date-time
+ *                 description: Data e hora da consulta
+ *     responses:
+ *       200:
+ *         description: Consulta agendada com sucesso
+ *       400:
+ *         description: Requisição inválida
+ *       500:
+ *         description: Erro ao agendar a consulta
  */
 router.post('/schedule', /*authMiddleware.verifyToken, */appointmentController.scheduleAppointment);
 
 /**
  * @swagger
- * /doctor/{id}:
+ * /appointments/doctor/{doctorId}:
  *   get:
- *     summary: Retorna um médico pelo ID
- *     tags: [Doctor]
+ *     summary: Obter todas as consultas de um médico
+ *     tags: [Appointments]
  *     parameters:
  *       - in: path
  *         name: doctorId
- *         required: true
  *         schema:
  *           type: string
+ *         required: true
  *         description: ID do médico
  *     responses:
  *       200:
- *         description: Médico encontrado
- *         content:
- *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/Doctor'
- *       404:
- *         description: Médico não encontrado
+ *         description: Lista de consultas do médico
+ *       400:
+ *         description: Requisição inválida
+ *       500:
+ *         description: Erro ao obter as consultas
  */
 router.get('/doctor/:doctorId', /*authMiddleware.verifyToken, */appointmentController.getDoctorAppointments);
 
 /**
  * @swagger
- * /patient/{id}:
+ * /appointments/patient/{patientId}:
  *   get:
- *     summary: Retorna um paciente pelo ID
- *     tags: [Patient]
+ *     summary: Obter todas as consultas de um paciente
+ *     tags: [Appointments]
  *     parameters:
  *       - in: path
  *         name: patientId
- *         required: true
  *         schema:
  *           type: string
+ *         required: true
  *         description: ID do paciente
  *     responses:
  *       200:
- *         description: Paciente encontrado
- *         content:
- *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/Patient'
- *       404:
- *         description: Paciente não encontrado
+ *         description: Lista de consultas do paciente
+ *       400:
+ *         description: Requisição inválida
+ *       500:
+ *         description: Erro ao obter as consultas
  */
 router.get('/patient/:patientId', /*authMiddleware.verifyToken, */appointmentController.getPatientAppointments);
 
 /**
  * @swagger
- * /appointments/{id}:
- *   get:
- *     summary: Retorna uma consulta pelo ID
+ * /appointments/cancel/{appointmentId}:
+ *   post:
+ *     summary: Cancelar uma consulta
  *     tags: [Appointments]
  *     parameters:
  *       - in: path
- *         name: id
- *         required: true
+ *         name: appointmentId
  *         schema:
  *           type: string
+ *         required: true
  *         description: ID da consulta
  *     responses:
  *       200:
- *         description: Consulta encontrada
- *         content:
- *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/Appointment'
- *       404:
- *         description: Consulta não encontrada
+ *         description: Consulta cancelada com sucesso
+ *       400:
+ *         description: Requisição inválida
+ *       500:
+ *         description: Erro ao cancelar a consulta
  */
 router.post('/cancel/:appointmentId', /*authMiddleware.verifyToken, */appointmentController.cancelAppointment);
 

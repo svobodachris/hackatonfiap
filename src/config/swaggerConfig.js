@@ -6,9 +6,9 @@ const options = {
   definition: {
     openapi: '3.0.0',
     info: {
-      title: 'Health&Med API',
+      title: 'CRMED',
       version: '1.0.0',
-      description: 'API para a aplicação Health&Med',
+      description: 'API para a aplicação CRMED',
     },
     //
     components: {

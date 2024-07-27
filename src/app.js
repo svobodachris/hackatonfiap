@@ -27,9 +27,9 @@ app.use(cors());
 app.use(express.json());
 
 // Conexão com o banco de dados
-mongoose.connect(dbUri, { useNewUrlParser: true, useUnifiedTopology: true })
+/*mongoose.connect(dbUri, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log('Conectado ao MongoDB'))
-  .catch(err => console.error('Erro ao conectar ao MongoDB', err));
+  .catch(err => console.error('Erro ao conectar ao MongoDB', err));*/
 
 // Rotas
 app.use('/api/auth', authRoutes);
